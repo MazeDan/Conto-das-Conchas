@@ -1,59 +1,32 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Contos de Conchas | Fases de um Alguém
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bem-vindo ao repositório do **Contos de Conchas**, um espaço literário digital desenvolvido para ser a extensão contínua do meu livro **"Fases de um Alguém"**.
 
-## About Laravel
+## Sobre o Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A escrita não termina quando um livro é publicado. Este projeto nasceu do desejo de ter um ambiente próprio, íntimo e imersivo para continuar compartilhando meus poemas, contos e reflexões com o mundo. 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Mais do que um simples blog, esta plataforma foi desenhada sob medida para oferecer uma experiência de leitura que resgata a tranquilidade e a estética analógica das páginas de um livro, unindo isso à fluidez de uma aplicação web moderna.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## O Livro
 
-## Learning Laravel
+Este portal é o universo expandido da minha obra literária. Se os poemas aqui publicados tocarem você, convido a conhecer a obra que deu origem a tudo isso.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+🔗 **Conheça o livro na Amazon:** [Fases de um Alguém](https://www.amazon.com.br/dp/B0GJNJ1PWJ)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Arquitetura e Tecnologias Utilizadas
 
-## Laravel Sponsors
+Para garantir que a tecnologia servisse à poesia (e não o contrário), o projeto foi construído sobre uma variação otimizada da **TALL Stack**, unindo leveza no front-end e alta produtividade no back-end.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Aqui estão os pilares tecnológicos da plataforma:
 
-### Premium Partners
+* **[Laravel](https://laravel.com/):** O coração do back-end. Responsável por toda a estrutura robusta da aplicação, roteamento, comunicação segura com o banco de dados e injeção dos dados literários na interface através do motor de templates Blade.
+* **[Tailwind CSS](https://tailwindcss.com/):** Escolhido para a estilização ágil e utilitária. Permitiu criar o design responsivo no padrão *Master-Detail* e implementar o plugin de Tipografia (`prose`). Isso foi fundamental para aplicar a estética de "papel texturizado" e preservar o espaçamento natural, a métrica e o ritmo visual dos versos na tela.
+* **[Alpine.js](https://alpinejs.dev/):** O motor da interatividade. Escolhido para substituir frameworks pesados e entregar uma experiência leve de *Single Page Application* (SPA). Ele gerencia o estado da leitura atual e orquestra as animações de *fade-in* e deslizamento direto no HTML, sem necessidade de recarregar a página.
+* **[FilamentPHP v3](https://filamentphp.com/):** O painel administrativo. Utilizado para criar uma interface de gestão de conteúdo (CMS) sob medida. Através de um layout em *Grid*, ele gerencia o upload das imagens de capa (com edição e corte nativos) e oferece um ambiente de escrita que preserva as quebras de linha estritas (`<br>`) dos poemas.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## ✒️ Autor
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Daniel Santana Bispo** Desenvolvedor Web, Designer Gráfico e Autor.
