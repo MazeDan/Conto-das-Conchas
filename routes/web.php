@@ -30,12 +30,5 @@ Route::get('/', function () {
     return view('posts.index', compact('posts'));
 });
 
-Route::get('/post/{slug}', function ($slug) {
-    $post = Post::where('slug', $slug)
-        ->where('published', true)
-        ->firstOrFail();
-
-    return view('posts.show', compact('post'));
-});
 
 require __DIR__.'/auth.php';

@@ -1,20 +1,57 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
-    /* 1. Correção do x-cloak para evitar piscar o layout */
-    [x-cloak] { display: none !important; }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    .font-serif-nostalgia { font-family: 'Playfair Display', serif; }
-    .font-sans-modern { font-family: 'Inter', sans-serif; }
-    .bg-paper { background-color: #F9F8F6; background-image: radial-gradient(#e5e5e5 1px, transparent 1px); background-size: 20px 20px; }
-</style>
+    <title>Contos de Conchas | Poesias e Reflexões</title>
+
+    <meta name="description" content="Mergulhe em Contos de Conchas, uma coleção imersiva de poesias e contos. Leia obras literárias com um design nostálgico e minimalista.">
+    <meta name="author" content="Daniel Santana Bispo">
+    <meta name="keywords" content="poesia, poemas, contos, literatura, arte, leitura, portfólio literário">
+    
+    <link rel="canonical" href="{{ request()->url() }}">
+
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:title" content="Contos de Conchas | Poesias e Reflexões">
+    <meta property="og:description" content="Mergulhe em uma coleção imersiva de poesias e contos com um design analógico e minimalista.">
+    <meta property="og:image" content="{{ asset('images/capa-compartilhamento.jpg') }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request()->url() }}">
+    <meta name="twitter:title" content="Contos de Conchas | Poesias e Reflexões">
+    <meta name="twitter:description" content="Mergulhe em uma coleção imersiva de poesias e contos com um design analógico e minimalista.">
+    <meta name="twitter:image" content="{{ asset('images/capa-compartilhamento.jpg') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Correção do x-cloak para evitar piscar o layout */
+        [x-cloak] { display: none !important; }
+        
+        .font-serif-nostalgia { font-family: 'Playfair Display', serif; }
+        .font-sans-modern { font-family: 'Inter', sans-serif; }
+        .bg-paper { 
+            background-color: #F9F8F6; 
+            background-image: radial-gradient(#e5e5e5 1px, transparent 1px); 
+            background-size: 20px 20px; 
+        }
+    </style>
+</head>
+
+<body>
+    
+
 
 <div x-data="{ activePoem: null }" class="min-h-screen bg-paper text-gray-800 font-serif-nostalgia selection:bg-amber-200 selection:text-amber-900">
     
@@ -23,8 +60,9 @@
         <aside class="w-full md:w-1/3 md:h-screen md:sticky md:top-0 md:pt-12 md:overflow-y-auto scrollbar-hide"
                :class="!activePoem ? 'block' : 'hidden md:block'">
                
+               <img src="{{ asset('favicon.svg') }}" alt="" width="20%">
             <h1 class="text-4xl md:text-5xl font-bold mb-10 text-gray-900 tracking-tight">
-                Casa de conchas
+                Contos de conchas
             </h1>
             
             <nav class="space-y-6 relative border-l-2 border-amber-100 pl-6">
@@ -88,7 +126,7 @@
                         <div class="w-12 h-0.5 bg-amber-300 mx-auto md:mx-0 mb-4"></div>
 
                         @if($post->cover_image)
-                            <div class="w-full h-48 md:h-64 mt-6 mb-8 overflow-hidden rounded-md border border-gray-100 shadow-sm">
+                            <div class="w-full h-48 md:h-96 mt-6 overflow-hidden rounded-md border border-gray-100 shadow-sm">
                                 <img src="{{ asset('storage/' . $post->cover_image) }}" 
                                      alt="Banner do poema {{ $post->title }}" 
                                      loading="lazy"
@@ -107,3 +145,9 @@
 
     </div>
 </div>
+
+</body>
+</html>
+
+
+
