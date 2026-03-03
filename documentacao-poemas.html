@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação: Leitor de Poemas SPA</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fef8ee',
+                            100: '#fdefd3',
+                            500: '#f59e0b',
+                            700: '#b45309',
+                            900: '#78350f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FAFAFA; }
+        pre { background-color: #1E293B !important; color: #E2E8F0 !important; border-radius: 0.5rem; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.875em; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased selection:bg-brand-100 selection:text-brand-900 pb-20">
+
+    <div class="max-w-4xl mx-auto px-6 pt-16">
+        
+        <header class="mb-12 border-b border-gray-200 pb-8">
+            <div class="inline-block bg-brand-100 text-brand-900 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                Guia de Arquitetura Front-end
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-4">
+                Leitor de Poemas: Master-Detail SPA
+            </h1>
+            <p class="text-xl text-gray-500">
+                Documentação técnica da interface responsiva construída com Laravel Blade, Tailwind CSS e Alpine.js.
+            </p>
+        </header>
+
+        <main class="prose prose-lg prose-amber max-w-none">
+            
+            <h2>1. Visão Geral e Arquitetura</h2>
+            <p>
+                Esta <em>view</em> implementa um padrão de interface chamado <strong>Master-Detail</strong> (Mestre-Detalhes). Em vez de carregar uma nova página a cada clique (padrão tradicional), ela se comporta como uma <strong>SPA (Single Page Application)</strong>. Todos os poemas são carregados no HTML, e a interface apenas alterna qual deles está visível no momento.
+            </p>
+            <ul>
+                <li><strong>Laravel Blade:</strong> Motor de templates que injeta os dados do backend (<code>$posts</code>).</li>
+                <li><strong>Tailwind CSS:</strong> Framework utilitário para estilização e responsividade direto no HTML.</li>
+                <li><strong>Alpine.js:</strong> Framework JavaScript minimalista que gerencia o estado da interface (mostrar/esconder poemas) sem a complexidade de criar componentes separados em Vue ou React.</li>
+            </ul>
+
+            <hr>
+
+            <h2>2. O Cérebro da Interface: Alpine.js</h2>
+            <p>A magia da interatividade acontece logo na primeira <code>div</code> principal que envelopa todo o layout:</p>
+<pre><code>&lt;div x-data="{ activePoem: null }"&gt;</code></pre>
+            <ul>
+                <li><strong><code>x-data</code>:</strong> Cria um "estado" local na página. A variável <code>activePoem</code> guarda o ID do poema que o leitor quer visualizar. Ele começa como <code>null</code> (estado vazio, nenhum poema selecionado).</li>
+            </ul>
+            <p>Quando o leitor clica em um botão no índice (o menu lateral):</p>
+<pre><code>&lt;button @click="activePoem = {{ $post->id }}; window.scrollTo({ top: 0, behavior: 'smooth' })"&gt;</code></pre>
+            <ul>
+                <li><strong><code>@click</code>:</strong> O Alpine intercepta o clique, altera o valor de <code>activePoem</code> para o ID daquele post específico e, em seguida, rola a página suavemente para o topo. Todos os elementos do HTML que dependem do <code>activePoem</code> reagem instantaneamente a essa mudança.</li>
+            </ul>
+
+            <hr>
+
+            <h2>3. O Esqueleto e a Responsividade (Mobile vs. Desktop)</h2>
+            <p>O layout utiliza <strong>Flexbox</strong> em sua estrutura base para se adaptar a qualquer tamanho de tela sem quebrar a proporção visual.</p>
+<pre><code>&lt;div class="flex flex-col md:flex-row"&gt;</code></pre>
+            <ul>
+                <li><strong>No Celular (<code>flex-col</code>):</strong> Os blocos se empilham verticalmente. A visibilidade é controlada dinamicamente: se há um poema aberto, o Alpine esconde o índice. Se o poema é fechado, o índice volta a aparecer.</li>
+                <li><strong>No Computador (<code>md:flex-row</code>):</strong> A partir do <em>breakpoint</em> médio (telas maiores que 768px), a tela se divide em duas colunas. O Índice ocupa um terço (<code>md:w-1/3</code>) e a leitura ocupa o resto (<code>md:w-2/3</code>).</li>
+            </ul>
+
+            <hr>
+
+            <h2>4. Dissecando os Componentes</h2>
+
+            <h3>A. O Estilo Base (CSS Customizado)</h3>
+<pre><code>[x-cloak] { display: none !important; }
+.bg-paper { 
+    background-color: #F9F8F6; 
+    background-image: radial-gradient(#e5e5e5 1px, transparent 1px); 
+}</code></pre>
+            <p><strong><code>x-cloak</code>:</strong> Previne o temido "FOUC" (<em>Flash of Unstyled Content</em>). Essa classe garante que o HTML não vomite todos os poemas de uma vez na tela durante a fração de segundo que o Alpine.js leva para ser carregado e esconder os elementos.</p>
+
+            <h3>B. O Índice (Menu Lateral)</h3>
+<pre><code>&lt;aside class="md:sticky md:top-0 md:h-screen md:overflow-y-auto scrollbar-hide"&gt;</code></pre>
+            <p>A classe <strong><code>md:sticky md:top-0</code></strong> faz com que o menu fique preso e acompanhe a rolagem no desktop, garantindo que a lista de poemas esteja sempre acessível independente do quão longo seja o texto lido ao lado.</p>
+
+            <h3>C. As Imagens em Miniatura (Avatares)</h3>
+<pre><code>&lt;div class="shrink-0 w-10 h-10 overflow-hidden rounded-full ring-2 ring-amber-300"&gt;
+    &lt;img src="..." class="w-full h-full object-cover object-center"&gt;
+&lt;/div&gt;</code></pre>
+            <p>A combinação de <strong><code>w-full h-full object-cover</code></strong> dentro de uma <code>div</code> com tamanho fixo garante que a imagem preencha a miniatura perfeitamente e sofra um corte limpo nas bordas, sem nunca ser espremida ou distorcida.</p>
+
+            <h3>D. As Animações de Entrada</h3>
+<pre><code>&lt;article 
+    x-cloak 
+    x-show="activePoem === {{ $post->id }}" 
+    x-transition:enter="transition ease-out duration-700"
+    x-transition:enter-start="opacity-0 translate-y-8"
+    x-transition:enter-end="opacity-100 translate-y-0"
+&gt;</code></pre>
+            <p>As diretivas de <strong><code>x-transition</code></strong> configuram um <em>fade-in</em> elegante. O poema começa invisível e um pouco mais abaixo no eixo Y (<code>translate-y-8</code>) e desliza suavemente para a posição original enquanto se torna totalmente opaco.</p>
+
+            <hr>
+
+            <h2>5. Boas Práticas e Acessibilidade (Nível Produção)</h2>
+            
+            <ul>
+                <li><strong>Performance (<code>loading="lazy"</code>):</strong> Adicionado em todas as tags de imagem. Como o <code>@foreach</code> injeta todos os poemas no HTML ao mesmo tempo, o atributo avisa ao navegador do usuário para baixar a imagem <em>apenas</em> se o poema for de fato aberto, economizando muitos dados e acelerando o carregamento inicial da página.</li>
+                <li><strong>Acessibilidade por Teclado:</strong> As tags <code>&lt;button&gt;</code> ganharam as diretivas <code>focus:ring-2 focus:outline-none</code>. Isso garante que usuários navegando pela tecla <em>Tab</em> saibam exatamente qual poema está selecionado.</li>
+                <li><strong>Preservação de Versos (<code>whitespace-pre-wrap</code>):</strong> Fundamental para sites de literatura. Essa classe do Tailwind avisa ao navegador para respeitar as quebras de linha exatas (os "Enters") e recuos presentes no banco de dados, não transformando tudo num bloco de texto massivo e respeitando a métrica poética visual.</li>
+            </ul>
+
+        </main>
+        
+        <footer class="mt-16 pt-8 border-t border-gray-200 text-sm text-gray-500 text-center">
+            Documentação gerada para projetos com Laravel, Tailwind CSS e Alpine.js.
+        </footer>
+
+    </div>
+
+</body>
+</html>
