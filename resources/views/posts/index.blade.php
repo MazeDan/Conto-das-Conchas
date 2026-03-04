@@ -50,7 +50,84 @@
 </head>
 
 <body>
-    
+
+  <header class="w-full border-b border-amber-100/60 bg-paper">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex items-center justify-between">
+
+        <!-- Marca -->
+ <div class="flex items-center gap-4">
+
+    <img src="{{ asset('favicon.svg') }}" 
+         alt="Símbolo Contos de Conchas"
+         class="w-9 h-9 md:w-11 md:h-11 opacity-90">
+
+    <div class="flex flex-col">
+
+        <h1 class="text-3xl md:text-4xl font-serif-nostalgia text-gray-900 tracking-tight leading-none">
+            Contos de Conchas
+        </h1>
+
+        <a href="https://dansb.com.br"
+           class="mt-2 inline-flex items-center gap-2 font-sans-modern text-xs uppercase tracking-[0.35em] text-gray-400 hover:text-amber-700 transition-colors duration-300">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-3.5 h-3.5"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+
+            Dansb
+
+        </a>
+
+    </div>
+
+</div>  
+
+        <!-- Links -->
+        <div class="flex items-center gap-8 text-gray-500">
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/ldan927"
+               target="_blank"
+               class="hover:text-amber-700 transition-colors duration-300"
+               aria-label="Instagram">
+
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     class="w-5 h-5" 
+                     fill="none" 
+                     viewBox="0 0 24 24" 
+                     stroke="currentColor"
+                     stroke-width="1.3">
+                    <rect x="2" y="2" width="20" height="20" rx="6"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="18" cy="6" r="1.2" fill="currentColor"/>
+                </svg>
+            </a>
+
+            <!-- Livro -->
+            <a href="https://www.amazon.com.br/dp/B0GJNJ1PWJ"
+               target="_blank"
+               class="hover:text-amber-700 transition-colors duration-300"
+               aria-label="Livro">
+
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     class="w-5 h-5" 
+                     fill="none" 
+                     viewBox="0 0 24 24" 
+                     stroke="currentColor"
+                     stroke-width="1.3">
+                    <path d="M4 5a2 2 0 012-2h12a2 2 0 012 2v14a1 1 0 01-1.447.894L12 17l-6.553 2.894A1 1 0 014 19V5z"/>
+                </svg>
+            </a>
+
+        </div>
+
+    </div>
+</header>
 
 
 <div x-data="{ activePoem: null }" class="min-h-screen bg-paper text-gray-800 font-serif-nostalgia selection:bg-amber-200 selection:text-amber-900">
@@ -60,11 +137,8 @@
         <aside class="w-full md:w-1/3 md:h-screen md:sticky md:top-0 md:pt-12 md:overflow-y-auto scrollbar-hide"
                :class="!activePoem ? 'block' : 'hidden md:block'">
                
-               <img src="{{ asset('favicon.svg') }}" alt="" width="20%">
-            <h1 class="text-4xl md:text-5xl font-bold mb-10 text-gray-900 tracking-tight">
-                Contos de conchas
-            </h1>
-            
+             
+        
             <nav class="space-y-6 relative border-l-2 border-amber-100 pl-6">
                 @foreach($posts as $post)
                     <div class="group">
@@ -145,6 +219,27 @@
 
     </div>
 </div>
+
+
+<footer class="mt-24 border-t border-amber-100 bg-white/60 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 py-12 text-center">
+        
+        <h3 class="text-xl font-serif-nostalgia text-gray-900 mb-4">
+            Sobre Contos de Conchas
+        </h3>
+
+        <p class="text-gray-600 font-sans-modern max-w-2xl mx-auto leading-relaxed">
+            Um projeto autoral criado por Daniel Bispo.
+            Este espaço reúne poemas e reflexões sobre tempo, memória e identidade,
+            explorando a linguagem como ferramenta de contemplação.
+        </p>
+
+        <div class="mt-8 text-sm text-gray-400 font-sans-modern">
+            © {{ date('Y') }} Contos de Conchas — Todos os direitos reservados.
+        </div>
+
+    </div>
+</footer>
 
 </body>
 </html>
